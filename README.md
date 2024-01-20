@@ -14,6 +14,8 @@ pnpm dev
 bun dev
 ```
 
+Hello People
+
 Hello World
 
 Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
