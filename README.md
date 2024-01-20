@@ -14,7 +14,6 @@ pnpm dev
 bun dev
 ```
 
-Hello People
 
 Hello World
 
