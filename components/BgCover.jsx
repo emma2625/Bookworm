@@ -1,15 +1,17 @@
 import React from "react";
 
 const BgCover = (props) => {
-    console.log(props);
+    
+    const {color} = props
+    
   return (
     <>
       <div
         className="w-full h-96 border-2 border-black"
-        
+        style={{backgroundColor: props.color}}
       ></div>
 
-      <p className="my-5 font-bold">RGB VALUE: </p>
+      <p className="my-5 font-bold">RGB VALUE: {props.color} </p>
     </>
   );
 };
