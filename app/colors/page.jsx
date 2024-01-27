@@ -1,5 +1,6 @@
 'use client'
 import React, { useState } from 'react'
+import BgCover from '@/components/BgCover';
 
 const page = () => {
     const [bg, setBg] = useState('rgb(255, 255, 255)');
@@ -10,11 +11,8 @@ const page = () => {
                 Generate Color
             </button>
 
-            <div className="w-full h-96 border-2 border-black" style={{ backgroundColor: bg }}></div>
 
-            <p className='my-5 font-bold'>
-               RGB VALUE:   {bg}
-            </p>
+            <BgCover color={bg} size={54} rounded={true} />
         </div>
     </main>
   )

@@ -1,11 +1,17 @@
-import React from 'react'
+import React from "react";
 
-const BgCover = () => {
+const BgCover = (props) => {
+    console.log(props);
   return (
-    <div>
-      
-    </div>
-  )
-}
+    <>
+      <div
+        className="w-full h-96 border-2 border-black"
+        
+      ></div>
 
-export default BgCover
+      <p className="my-5 font-bold">RGB VALUE: </p>
+    </>
+  );
+};
+
+export default BgCover;
