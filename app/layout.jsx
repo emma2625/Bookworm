@@ -1,6 +1,7 @@
 import { Inter, Roboto } from "next/font/google";
 import "./globals.css";
 import UserProvider from "@/context/UserProvider";
+import "@fortawesome/fontawesome-svg-core/styles";
 
 const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({ weight: ["100", "300", "400"], subsets: ["latin"] });
