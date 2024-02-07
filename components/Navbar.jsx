@@ -1,6 +1,7 @@
 'use client'
 import { faBars, faSignIn, faTimes } from "@fortawesome/free-solid-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { useSession } from "next-auth/react";
 import Image from "next/image";
 import Link from "next/link";
 import React, { useState } from "react";
@@ -11,6 +12,8 @@ const Navbar = () => {
       setOpen(!open);
     }
     
+    // const session = useSession();
+    const {data: session, status } = useSession();
 
   return (
     <nav className="p-2 flex bg-emerald-300 justify-between items-center">
