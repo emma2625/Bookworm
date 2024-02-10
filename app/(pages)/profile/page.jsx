@@ -12,7 +12,7 @@ const page = async () => {
   return (
     <section className="my-16">
       <div className="shadow-lg p-3 rounded w-full max-w-2xl mx-auto">
-        <h1 className="text-center font-bold mb-5"> Profile </h1>
+        <h1 className="text-center font-bold mb-5 text-black"> Profile </h1>
 
         <ProfileForm />
       </div>
