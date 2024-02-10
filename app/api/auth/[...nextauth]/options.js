@@ -8,6 +8,16 @@ export const authOptions = {
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT,
       clientSecret: process.env.GOOGLE_SECRET,
+      profile(profile){
+        return {
+          ...profile,
+          id: profile.sub,
+          address: null,
+          phoneNumber: null,
+          country: null,
+          bio: null
+        }
+      }
     }),
 
     GitHubProvider({
@@ -15,6 +25,15 @@ export const authOptions = {
       clientSecret: "Test",
     }),
   ],
+  callbacks: {
+    async session({ session, user, token }) {
+      return  {
+        ...session,
+        ...user,
+        ...token
+      }
+    },
+  },
 
   pages: {
     signIn: "/signin",

@@ -65,7 +65,7 @@ const Navbar = () => {
         ) : (
           <>
             <li>
-              <Link href={"/signin"} className="p-2 ">
+              <Link href={"/profile"} className="p-2 ">
                 Profile
                 <FontAwesomeIcon icon={faUserCircle} className="text-white" />
               </Link>
