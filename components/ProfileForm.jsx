@@ -41,7 +41,7 @@ const ProfileForm = () => {
                   bio: values.bio,
                 });
 
-                update({
+               await update({
                   phoneNumber: values.phoneNumber,
                   address: values.address,
                   country: values.country,

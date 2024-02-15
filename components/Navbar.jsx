@@ -71,7 +71,7 @@ const Navbar = () => {
               </Link>
             </li>
             <li>
-              <Link href={"/signin"} className="p-2 ">
+              <Link href={"/uploads"} className="p-2 ">
                 Uploads
                 <FontAwesomeIcon icon={faImages} className="text-white" />
               </Link>
