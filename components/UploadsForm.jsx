@@ -2,7 +2,13 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
+import { ref, uploadBytes, getDownloadURL, getStorage } from "firebase/storage";
+import { useSession } from "next-auth/react";
+import { addDoc, collection } from "firebase/firestore";
+import { db } from "@/app/firebase/config";
+import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import { faRefresh } from "@fortawesome/free-solid-svg-icons";
+
 const UploadValidationSchema = Yup.object().shape({
   type: Yup.string()
     .required("Please select a type")
@@ -35,7 +41,10 @@ const UploadValidationSchema = Yup.object().shape({
       }
     }),
 });
+
 const UploadsForm = () => {
+  const { data: session, status } = useSession();
+
   return (
     <div>
       <Formik
@@ -46,7 +55,42 @@ const UploadsForm = () => {
         }}
         validationSchema={UploadValidationSchema}
         onSubmit={async (values, { setSubmiting, resetForm }) => {
-          const storageRef = "";
+          const storage = getStorage();
+          // Generate a new file namae
+          const fileNewName = `Uploaded_image_${new Date().getTime()}_${Math.floor(
+            Math.random() * 100000000
+          )}.${values.file.type.split("/")[1]}`;
+
+          // Create a reference to the file show the folder and file name
+          const storageRef = ref(storage, "images/" + fileNewName);
+
+          // upload the file
+
+          try {
+            // Upload the file to the storage bucket
+            await uploadBytes(storageRef, values.file);
+
+            // Get the download url for the uploaded file
+            const downloadUrl = await getDownloadURL(storageRef);
+
+            // Save the file information on firestore database
+            const data = {
+              title: values.title,
+              orientation: values.type,
+              author: session.user.name,
+              fileUrl: downloadUrl,
+              userId: session.user.id,
+            };
+
+            // Create a new record on firebase
+            await addDoc(collection(db, "userUploads"), data);
+            alert("Image uploaded");
+            resetForm();
+          } catch (error) {
+            console.error(error);
+          } finally {
+            setSubmiting(false);
+          }
         }}
       >
         {({ isSubmitting, setFieldValue }) => (
@@ -103,7 +147,10 @@ const UploadsForm = () => {
                 type="submit"
                 className="bg-blue-600 rounded-lg py-2 px-16 text-white"
               >
-                Update Profile
+                Upload
+                {isSubmitting && (
+                  <FontAwesomeIcon icon={faRefresh} className="animate-spin" />
+                )}
               </button>
             </div>
           </Form>

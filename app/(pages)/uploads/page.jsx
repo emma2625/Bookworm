@@ -2,6 +2,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 import ProfileForm from "@/components/ProfileForm";
 import UploadsForm from "@/components/UploadsForm";
 import { getServerSession } from "next-auth/next";
+import Link from "next/link";
 import { redirect } from "next/navigation";
 import React from "react";
 export const metadata = {
@@ -17,6 +18,11 @@ const page = async () => {
     <section className="my-16">
       <div className="shadow-lg p-3 rounded w-full max-w-5xl mx-auto">
         <h1 className="text-center font-bold mb-5 text-black"> Uploads </h1>
+        <div className="text-right my-5">
+          <Link href={"/my-uploads"}>
+            View Uploads
+          </Link>
+        </div>
         <UploadsForm />
       </div>
     </section>

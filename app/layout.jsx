@@ -7,7 +7,7 @@ const inter = Inter({ subsets: ["latin"] });
 const roboto = Roboto({ weight: ["100", "300", "400"], subsets: ["latin"] });
 
 export const metadata = {
-  title: "Book worm",
+  title: "Photo Booth",
   description: "This is my react app",
 };
 
