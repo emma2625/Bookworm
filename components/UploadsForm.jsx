@@ -2,7 +2,7 @@
 import { ErrorMessage, Field, Form, Formik } from "formik";
 import React from "react";
 import * as Yup from "yup";
-
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 const UploadValidationSchema = Yup.object().shape({
   type: Yup.string()
     .required("Please select a type")
@@ -31,7 +31,7 @@ const UploadValidationSchema = Yup.object().shape({
             1028 bytes ==  1kb
             1028kb ==  1mb
             1242880bytes =  1mb
-        */ 
+        */
       }
     }),
 });
@@ -45,9 +45,8 @@ const UploadsForm = () => {
           file: "",
         }}
         validationSchema={UploadValidationSchema}
-
-        onSubmit={async (values, {setSubmiting, resetForm}) => {
-                resetForm();
+        onSubmit={async (values, { setSubmiting, resetForm }) => {
+          const storageRef = "";
         }}
       >
         {({ isSubmitting, setFieldValue }) => (
